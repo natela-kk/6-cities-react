@@ -1,0 +1,11 @@
+.loader {
+  position: 'fixed';
+        left: '0';
+        top: '500px';
+        z-index:'999';
+        margin: 'auto';
+        overflow: 'visible';
+        visibility: 'visible';
+        opacity: '1';
+        transition: 'opacity 2s linear';
+}

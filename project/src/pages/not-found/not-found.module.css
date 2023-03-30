@@ -1,0 +1,35 @@
+.notFound {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.errorText {
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: -20px;
+  margin-bottom: 100px;
+}
+
+.error {
+  margin-top: 30px;
+  margin-bottom: 0px;
+  font-size: 100px;
+  font-weight: 500;
+}
+
+.link {
+  background-color: #4481c3;
+  padding: 5px 15px;
+  color: #f5f5f5;
+  border: #346faf solid 4px;
+}
+
+.link:hover {
+  background-color: #6198d3;
+}
