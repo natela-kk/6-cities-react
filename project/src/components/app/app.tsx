@@ -60,16 +60,3 @@ function App(): JSX.Element {
 
 export default App;
 
-const commandList = ['ffff', '2xx', 3, 4];
-let commands = {};
-
-function registerCommands(list: any[]) {
-  console.log(commands, list);
-  commands = list.reduce((acc: { [x: string]: any; }, Command: any) => {
-    console.log(acc, Command);
-    const cliCommand = Command;
-    acc[cliCommand.name] = cliCommand;
-    return acc;
-  }, commands);
-}
-console.log(registerCommands(commandList));
