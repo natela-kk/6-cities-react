@@ -2,7 +2,7 @@
   "name": "project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://natela-kk.github.io/1551039-six-cities-9/",
+  "homepage": "https://natela-kk.github.io/6-cities-react/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@types/leaflet": "^1.7.9",
