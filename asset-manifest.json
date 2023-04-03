@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/6-cities-react/static/css/main.536e042c.css",
-    "main.js": "/6-cities-react/static/js/main.e4b41322.js",
+    "main.js": "/6-cities-react/static/js/main.e97e5807.js",
     "static/media/map@2x.jpg": "/6-cities-react/static/media/map@2x.f742d39af4691374f728.jpg",
     "static/media/map-big@2x.jpg": "/6-cities-react/static/media/map-big@2x.5b7f09bc2fdd5c9fd994.jpg",
     "static/media/amsterdam@2x.jpg": "/6-cities-react/static/media/amsterdam@2x.e1499da49f8b2f00ab5d.jpg",
@@ -37,10 +37,10 @@
     "static/media/ico-place.svg": "/6-cities-react/static/media/ico-place.1503475012d8c609b748.svg",
     "static/media/triangle.svg": "/6-cities-react/static/media/triangle.8cd83f400ed9a960a8b2.svg",
     "main.536e042c.css.map": "/6-cities-react/static/css/main.536e042c.css.map",
-    "main.e4b41322.js.map": "/6-cities-react/static/js/main.e4b41322.js.map"
+    "main.e97e5807.js.map": "/6-cities-react/static/js/main.e97e5807.js.map"
   },
   "entrypoints": [
     "static/css/main.536e042c.css",
-    "static/js/main.e4b41322.js"
+    "static/js/main.e97e5807.js"
   ]
 }
