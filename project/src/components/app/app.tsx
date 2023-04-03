@@ -4,26 +4,27 @@ import Login from '../../pages/login/login';
 import Property from '../../pages/property/property';
 import NotFoundScreen from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { Route, Routes, Navigate, HashRouter } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
+import {Route, Routes, Navigate} from 'react-router-dom';
+import {AppRoute} from '../../const';
+import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import { getLoadedDataStatus } from '../../store/offers/selectors';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isDataLoaded = useAppSelector(getLoadedDataStatus);
 
-  if (!isDataLoaded) {
+  if(!isDataLoaded) {
     return (
       <LoadingScreen />
     );
   }
 
   return (
-    // <HistoryRouter history={browserHistory}>
-    <HashRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -46,15 +47,14 @@ function App(): JSX.Element {
         <Route path={AppRoute.Offer}>
           <Route index element={<Navigate to={AppRoute.Main} />} />
           <Route path=':id' element={<Property />} />
-          <Route path="*" element={<NotFoundScreen />} />
+          <Route path="*"  element={<NotFoundScreen />} />
         </Route>
         <Route
           path="*"
           element={<NotFoundScreen />}
         />
       </Routes>
-    </HashRouter>
-    // </HistoryRouter>
+    </HistoryRouter>
   );
 }
 
