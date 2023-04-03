@@ -8,8 +8,6 @@ import { Route, Routes, Navigate, HashRouter } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
-import HistoryRouter from '../history-route/history-route';
-import browserHistory from '../../browser-history';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getLoadedDataStatus } from '../../store/offers/selectors';
 

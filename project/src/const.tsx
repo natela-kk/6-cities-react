@@ -2,7 +2,7 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',
-  Main  = '/',
+  Main  = '/6-cities-react',
   Error  = '*',
 }
 
