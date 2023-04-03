@@ -7,12 +7,12 @@ import Host from '../../components/host/host';
 import Map from '../../components/map/map';
 import { useParams } from 'react-router-dom';
 import CardList from '../../components/card-list/card-list';
-import {useAppSelector} from '../../hooks';
-import {useEffect} from 'react';
-import {fetchNearbyAction, fetchPropertyAction, postFavoriteAction} from '../../store/api-actions';
-import {useAppDispatch} from '../../hooks/index';
+import { useAppSelector } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchNearbyAction, fetchPropertyAction, postFavoriteAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks/index';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { getCity } from '../../store/city/selectors';
 import { loadComments } from '../../store/comments/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
@@ -31,7 +31,7 @@ function Property(): JSX.Element {
   const comments = useAppSelector(loadComments);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const {id} = useParams();
+  const { id } = useParams();
   const offerId = Number(id);
   const nearbyOffers = nearby.slice(0, NEARBY_COUNT);
 
@@ -40,7 +40,8 @@ function Property(): JSX.Element {
       const offerStatus = property.isFavorite ? 0 : 1;
       dispatch(postFavoriteAction({
         id: property.id,
-        status: offerStatus}));
+        status: offerStatus,
+      }));
     } else {
       dispatch(redirectToRoute(AppRoute.Login));
     }
@@ -59,14 +60,14 @@ function Property(): JSX.Element {
 
   const pins = [...nearbyOffers, property];
 
-  return(
+  return (
     <div className="page">
       <Header />
 
       <main className="page__main page__main--property">
         <section className="property">
 
-          <Gallery images={property.images.slice(0, IMAGES_COUNT)}/>
+          <Gallery images={property.images.slice(0, IMAGES_COUNT)} />
 
           <div className="property__container container">
             <div className="property__wrapper">
@@ -95,7 +96,7 @@ function Property(): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${property.rating / 5 * 100}%`}} />
+                  <span style={{ width: `${property.rating / 5 * 100}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{property.rating}</span>
@@ -108,7 +109,7 @@ function Property(): JSX.Element {
                   {property.bedrooms} {property.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}
                 </li>
                 <li className="property__feature property__feature--adults">
-                Max {property.maxAdults} {property.maxAdults > 1 ? 'adults' : 'adult'}
+                  Max {property.maxAdults} {property.maxAdults > 1 ? 'adults' : 'adult'}
                 </li>
               </ul>
               <div className="property__price">
@@ -116,9 +117,9 @@ function Property(): JSX.Element {
                 <span className="property__price-text">&nbsp;night</span>
               </div>
 
-              <Features features={property.goods}/>
+              <Features features={property.goods} />
 
-              <Host offer={property}/>
+              <Host offer={property} />
 
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">
@@ -126,11 +127,10 @@ function Property(): JSX.Element {
                   <span className="reviews__amount">{comments.length}</span>
                 </h2>
 
-                {/* <CommentList offerId={offerId}/> */}
+                <CommentList offerId={offerId} />
 
-                {/* {authorizationStatus === AuthorizationStatus.Auth && */}
-                <CommentForm offerId={offerId} />
-                {/* // />} */}
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <CommentForm offerId={offerId} />}
 
               </section>
             </div>
@@ -144,7 +144,7 @@ function Property(): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            <CardList offers={nearbyOffers} classList={['near-places__list']}/>
+            <CardList offers={nearbyOffers} classList={['near-places__list']} />
 
           </section>
         </div>

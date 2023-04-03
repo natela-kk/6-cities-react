@@ -1,9 +1,11 @@
 import 'leaflet/dist/leaflet.css';
-import { useEffect, useRef } from 'react';
-import {Offer, City} from '../../types/offer';
+import { memo, useEffect, useRef } from 'react';
+import { Offer, City } from '../../types/offer';
 import useMap from '../../hooks/use-map';
 import leaflet from 'leaflet';
-import {LayerGroup} from 'leaflet';
+import { LayerGroup } from 'leaflet';
+import pin from '../../img/pin.svg';
+import pinActive from '../../img/pin-active.svg';
 
 type MapProps = {
   className: string;
@@ -12,20 +14,29 @@ type MapProps = {
   city: City;
 };
 
-function Map({ className, offers, selectedPoint, city}: MapProps): JSX.Element {
+function Map({ className, offers, selectedPoint, city }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city.location);
   const defaultCustomIcon = leaflet.icon({
-    iconUrl: './img/pin.svg',
+    iconUrl: pin,
     iconSize: [27, 39],
     iconAnchor: [20, 40],
   });
 
   const currentCustomIcon = leaflet.icon({
-    iconUrl: './img/pin-active.svg',
+    iconUrl: pinActive,
     iconSize: [27, 39],
     iconAnchor: [20, 40],
   });
+
+  useEffect(() => {
+    if (map) {
+      map.setView([
+        city.location.latitude,
+        city.location.longitude,
+      ]);
+    }
+  }, [map, city]);
 
   useEffect(() => {
     if (map) {
@@ -45,19 +56,17 @@ function Map({ className, offers, selectedPoint, city}: MapProps): JSX.Element {
           .addTo(markerGroup);
       });
 
-      map.setView([city.location.latitude, city.location.longitude]);
-
       return () => {
         clearMarkers();
       };
     }
 
-  }, [map, offers, selectedPoint]);
+  }, [city.location.latitude, city.location.longitude, currentCustomIcon, defaultCustomIcon, map, offers, selectedPoint]);
 
   return (
     <section className={`${className} map`}>
       <div
-        style={{height: '100%'}}
+        style={{ height: '100%' }}
         ref={mapRef}
       >
       </div>
@@ -65,4 +74,9 @@ function Map({ className, offers, selectedPoint, city}: MapProps): JSX.Element {
   );
 }
 
-export default Map;
+export default memo(
+  Map,
+  (prevProps, nextProps) =>
+    prevProps.city.name === nextProps.city.name &&
+    prevProps.selectedPoint === nextProps.selectedPoint,
+);
